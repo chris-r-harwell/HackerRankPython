@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0059)http://www.secnetix.de/olli/Python/list_comprehensions.hawk -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css" media="screen"><!--
+	body {
+		background: #ffffff ;
+		color:      #000000
+	}
+	A:link		{ color: #0000ff }
+	A:active	{ color: #00a0a0 }
+	A:visited	{ color: #a000a0 }
+	img.borderless	{
+		border: none ;
+		border-color: #ffffff ;
+		border-width: 0px
+	}
+	th		{ text-decoration: underline }
+	div.vspace	{ padding-top: 3ex }
+	span.hspace	{ padding-left: 3em }
+	p		{ width: 75ex ; text-align: justify }
+	.just		{ width: 75ex ; text-align: justify }
+--></style>
+<title>Python:  List Comprehensions</title>
+<link rel="stylesheet" type="text/css" href="chrome-extension://pkehgijcmpdhfbdbbnkijodmdjhbjlgp/skin/socialwidgets.css"></head>
+<body bgcolor="#ffffff" text="#000000" link="0000ff" vlink="a000a0" alink="00a0a0">
+
+
+<div style="width: 75ex ; text-align: justify">
+
+<h1>Python:  List Comprehensions</h1>
+
+<table border="1" cellspacing="0" cellpadding="6"><tbody><tr>
+<td class="just">
+    <font size="-1">
+	Note:  Lines beginning with "<code>&gt;&gt;&gt;</code>"
+	and "<code>...</code>" indicate input to Python (these
+	are the default prompts of the interactive interpreter).
+	Everything else is output from Python.
+    </font>
+</td>
+</tr></tbody></table>
+
+
+<p>
+Python supports a concept called "list comprehensions".
+It can be used to construct lists in a very natural,
+easy way, like a mathematician is used to do.
+</p>
+
+<p>
+The following are common ways to describe lists (or
+sets, or tuples, or vectors) in mathematics.
+</p>
+
+</div>
+<table border="0" cellspacing="0" cellpadding="12">
+<tbody><tr><td width="50"></td>
+<td bgcolor="#d0d0ff">
+<code>S&nbsp;=&nbsp;{x²&nbsp;:&nbsp;x&nbsp;in&nbsp;{0&nbsp;...&nbsp;9}}</code><br>
+<code>V&nbsp;=&nbsp;(1,&nbsp;2,&nbsp;4,&nbsp;8,&nbsp;...,&nbsp;2¹²)</code><br>
+<code>M&nbsp;=&nbsp;{x&nbsp;|&nbsp;x&nbsp;in&nbsp;S&nbsp;and&nbsp;x&nbsp;even}</code><br>
+</td></tr></tbody></table>
+<div style="width: 75ex ; text-align: justify">
+
+<p>
+You probably know things like the above from mathematics
+lessons at school.  In Python, you can write these
+expression almost exactly like a mathematician would
+do, without having to remember any special cryptic
+syntax.
+</p>
+
+<p>
+This is how you do the above in Python:
+</p>
+
+</div>
+<table border="0" cellspacing="0" cellpadding="12">
+<tbody><tr><td width="50"></td>
+<td bgcolor="#d0d0ff">
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>S&nbsp;=&nbsp;[x**2&nbsp;for&nbsp;x&nbsp;in&nbsp;range(10)]</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>V&nbsp;=&nbsp;[2**i&nbsp;for&nbsp;i&nbsp;in&nbsp;range(13)]</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>M&nbsp;=&nbsp;[x&nbsp;for&nbsp;x&nbsp;in&nbsp;S&nbsp;if&nbsp;x&nbsp;%&nbsp;2&nbsp;==&nbsp;0]</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code></code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>print&nbsp;S;&nbsp;print&nbsp;V;&nbsp;print&nbsp;M</code><br>
+<table cellpadding="2" cellspacing="0" bgcolor="#d0f0ff" width="100%"><tbody><tr><td>
+<code>[0,&nbsp;1,&nbsp;4,&nbsp;9,&nbsp;16,&nbsp;25,&nbsp;36,&nbsp;49,&nbsp;64,&nbsp;81]</code><br>
+<code>[1,&nbsp;2,&nbsp;4,&nbsp;8,&nbsp;16,&nbsp;32,&nbsp;64,&nbsp;128,&nbsp;256,&nbsp;512,&nbsp;1024,&nbsp;2048,&nbsp;4096]</code><br>
+<code>[0,&nbsp;4,&nbsp;16,&nbsp;36,&nbsp;64]</code><br>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<div style="width: 75ex ; text-align: justify">
+
+<p>
+I'm sure you want to see a more complicated example.  :-)
+The following is yet another way to compute prime numbers.
+The interesting thing is that we first build a list of
+non-prime numbers, using a single list comprehension,
+then use another list comprehension to get the "inverse"
+of the list, which are prime numbers.
+</p>
+
+</div>
+<table border="0" cellspacing="0" cellpadding="12">
+<tbody><tr><td width="50"></td>
+<td bgcolor="#d0d0ff">
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>noprimes&nbsp;=&nbsp;[j&nbsp;for&nbsp;i&nbsp;in&nbsp;range(2,&nbsp;8)&nbsp;for&nbsp;j&nbsp;in&nbsp;range(i*2,&nbsp;50,&nbsp;i)]</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>primes&nbsp;=&nbsp;[x&nbsp;for&nbsp;x&nbsp;in&nbsp;range(2,&nbsp;50)&nbsp;if&nbsp;x&nbsp;not&nbsp;in&nbsp;noprimes]</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>print&nbsp;primes</code><br>
+<table cellpadding="2" cellspacing="0" bgcolor="#d0f0ff" width="100%"><tbody><tr><td>
+<code>[2,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;11,&nbsp;13,&nbsp;17,&nbsp;19,&nbsp;23,&nbsp;29,&nbsp;31,&nbsp;37,&nbsp;41,&nbsp;43,&nbsp;47]</code><br>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<div style="width: 75ex ; text-align: justify">
+
+<p>
+NB:  You can nest list comprehensions inside of each other,
+so you could write the above example with a single
+statement (without the need for the temporary variable
+"<code>noprimes</code>").  However, such lines tend to get
+long and less readable, so this is not recommended.
+</p>
+
+<p>
+Of course, list comprehensions don't only work for numbers.
+Lists can contain <em>any</em> type of elements, including
+strings, nested lists and functions.  You can even
+mix different types within a list.
+</p>
+
+<p>
+The following works on a list of strings and produces a
+list of lists.  Each of the sublists contains two strings
+and an integer.
+</p>
+
+</div>
+<table border="0" cellspacing="0" cellpadding="12">
+<tbody><tr><td width="50"></td>
+<td bgcolor="#d0d0ff">
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>words&nbsp;=&nbsp;'The&nbsp;quick&nbsp;brown&nbsp;fox&nbsp;jumps&nbsp;over&nbsp;the&nbsp;lazy&nbsp;dog'.split()</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>print&nbsp;words</code><br>
+<table cellpadding="2" cellspacing="0" bgcolor="#d0f0ff" width="100%"><tbody><tr><td>
+<code>['The',&nbsp;'quick',&nbsp;'brown',&nbsp;'fox',&nbsp;'jumps',&nbsp;'over',&nbsp;'the',&nbsp;'lazy',&nbsp;'dog']</code><br>
+</td></tr></tbody></table>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code></code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>stuff&nbsp;=&nbsp;[[w.upper(),&nbsp;w.lower(),&nbsp;len(w)]&nbsp;for&nbsp;w&nbsp;in&nbsp;words]</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>for&nbsp;i&nbsp;in&nbsp;stuff:</code><br>
+<font color="#0000ff"><code>...&nbsp;</code></font><code>&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;i</code><br>
+<font color="#0000ff"><code>...&nbsp;</code></font><code></code><br>
+<table cellpadding="2" cellspacing="0" bgcolor="#d0f0ff" width="100%"><tbody><tr><td>
+<code>['THE',&nbsp;'the',&nbsp;3]</code><br>
+<code>['QUICK',&nbsp;'quick',&nbsp;5]</code><br>
+<code>['BROWN',&nbsp;'brown',&nbsp;5]</code><br>
+<code>['FOX',&nbsp;'fox',&nbsp;3]</code><br>
+<code>['JUMPS',&nbsp;'jumps',&nbsp;5]</code><br>
+<code>['OVER',&nbsp;'over',&nbsp;4]</code><br>
+<code>['THE',&nbsp;'the',&nbsp;3]</code><br>
+<code>['LAZY',&nbsp;'lazy',&nbsp;4]</code><br>
+<code>['DOG',&nbsp;'dog',&nbsp;3]</code><br>
+</td></tr></tbody></table>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code></code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>stuff&nbsp;=&nbsp;map(lambda&nbsp;w:&nbsp;[w.upper(),&nbsp;w.lower(),&nbsp;len(w)],&nbsp;words)</code><br>
+<font color="#0000ff"><code>&gt;&gt;&gt;&nbsp;</code></font><code>for&nbsp;i&nbsp;in&nbsp;stuff:</code><br>
+<font color="#0000ff"><code>...&nbsp;</code></font><code>&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;i</code><br>
+<font color="#0000ff"><code>...&nbsp;</code></font><code></code><br>
+<table cellpadding="2" cellspacing="0" bgcolor="#d0f0ff" width="100%"><tbody><tr><td>
+<code>['THE',&nbsp;'the',&nbsp;3]</code><br>
+<code>['QUICK',&nbsp;'quick',&nbsp;5]</code><br>
+<code>['BROWN',&nbsp;'brown',&nbsp;5]</code><br>
+<code>['FOX',&nbsp;'fox',&nbsp;3]</code><br>
+<code>['JUMPS',&nbsp;'jumps',&nbsp;5]</code><br>
+<code>['OVER',&nbsp;'over',&nbsp;4]</code><br>
+<code>['THE',&nbsp;'the',&nbsp;3]</code><br>
+<code>['LAZY',&nbsp;'lazy',&nbsp;4]</code><br>
+<code>['DOG',&nbsp;'dog',&nbsp;3]</code><br>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<div style="width: 75ex ; text-align: justify">
+
+<p>
+The above example also demonstrates that you can do exactly
+the same thing with <code>map()</code> and a lambda function.
+However, there are cases when you cannot
+use <code>map()</code> and have to use a list comprehension
+instead, or vice versa. When you can use both, then it
+is often preferable to use a list comprehension,
+because this is more efficient and easier to read,
+most of the time.
+</p>
+
+<p>
+You cannot use list comprehensions when the construction
+rule is too complicated to be expressed with "for" and "if"
+statements, or if the construction rule can change dynamically
+at runtime.  In this case, you better
+use <code>map()</code> and / or <code>filter()</code> with an
+appropriate function.
+Of course, you can combine that with list comprehensions.
+</p>
+
+
+</div>
+
+<hr>
+
+<p>
+<a href="http://validator.w3.org/check?uri=http://www.secnetix.de/olli/Python/list_comprehensions.hawk"><img src="./Python_ List Comprehensions_files/vh401.gif" alt="[HTML 4.01]" border="0" class="borderless" width="88" height="31"></a>
+</p>
+
+
+</body></html>
