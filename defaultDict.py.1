@@ -1,0 +1,72 @@
+#!/bin/env python3
+"""
+
+defaultdict tool is a containter in the collections class of Python.
+It is similar to the usual dictionary (dict) container, but it has one
+difference: The value fields' data type is specified upon initialization.
+
+INPUT: 1 + n + m lines
+ int n and m
+ next n lines:
+   words belonging to group A
+ next m lines:
+   words belonging to group B
+
+For each group B word,
+ find position in the group A list
+ pos1 pos2 pos3
+
+
+OUTPUT: m lines
+ ea. line should contain the positions of the occurences of
+ group B word in the group A list separated by spaces.
+ Print the indices of ea. occurrence of m in group A.
+ If it does not appear, print -1.
+
+"""
+
+
+import collections
+
+
+def get_positions(a, w):
+    """
+    INPUT:
+    a = list of words
+    i = word to look for
+    OUTPUT:
+    list of positions of w in a  or -1,
+        where position = zero-index + 1
+    """
+    f = a.count(w)
+    position_list = []
+
+    if f == 0:
+        return [-1]
+
+    pos = 0
+    for i in range(f):
+        try:
+            idx = a.index(w, pos)
+            pos = idx + 1
+        except ValueError:
+            pos = -1
+        position_list.append(pos)
+
+    assert len(position_list) == f
+
+    return position_list
+
+
+if __name__ == '__main__':
+    n, m = map(int, input().split())
+    group_A = list()
+    group_B = list()
+    positions = collections.defaultdict(list)
+    for _ in range(n):
+        group_A.append(input())
+    for _ in range(m):
+        group_B.append(input())
+    for word in group_B:
+        positions[word] = get_positions(group_A, word)
+        print(*positions[word])
