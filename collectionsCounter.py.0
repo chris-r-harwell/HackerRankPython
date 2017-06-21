@@ -1,0 +1,43 @@
+#!/bin/env python3
+"""
+Counter - a containter that stores elements as dictionary keys,
+and their counts are stored as dictionary values.
+
+INPUT:
+    X, number of shoes
+    shoe_size_array, list of all shoe sizes in shop
+    N, number of customers
+    next N lines two space separated values:
+       s p
+       shoe size price of shoe
+
+OUTPUT:
+    Amount of money earned
+"""
+
+
+import collections
+
+if __name__ == '__main__':
+    X = int(input())
+    size_arr = list(map(float, input().split()))
+    size_counter = collections.Counter(size_arr)
+    N = int(input())
+    money_earned = 0.0
+
+    # print('number of shoes: ' + repr(X))
+    # print('shoe size list available: ' + repr(size_arr))
+    # print('  collection of same: ' + repr(size_counter))
+    # print('number of customers: ' + repr(N))
+    for i in range(N):
+        s, p = map(float, input().split())
+        # print('wanted_size: ' + repr(s))
+        # print('wanted_price: ' + repr(p))
+        if size_counter.get(s, 0) > 0:
+            # print('have shoes')
+            # print('made sale')
+            money_earned += p
+            size_counter[s] -= 1
+            # print('money:' + repr(money_earned))
+
+    print("{:.0f}".format(round(money_earned)))
