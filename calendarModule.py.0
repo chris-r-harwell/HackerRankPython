@@ -1,0 +1,19 @@
+#!/bin/env python3
+#
+# REF: https://docs.python.org/3/library/calendar.html#calendar.TextCalendar
+#
+
+import calendar
+
+c = calendar.TextCalendar()
+m = c.formatmonth(2017, 8, w=4, l=1)
+print('Month:', m)
+print()
+#print(c.prmonth(2017, 8))
+
+#print()
+#print('Year:')
+y = c.formatyear(2017, w=2, l=1, c=2, m=3)
+print('Year:', y)
+#print(c.pryear(2017))
+
