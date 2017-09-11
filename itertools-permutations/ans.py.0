@@ -1,0 +1,26 @@
+#!/bin/env python3
+#
+
+# Given string S print all possible permutations
+# of size k of the string in lexicogaphic sorted order.
+#
+# INPUT:
+# S k
+# where S is a string
+# and k is an integer
+# space separated
+#
+# OUTPUT:
+# permutations of the string S
+#
+
+
+from itertools import permutations
+
+
+if __name__ == '__main__':
+    line = input()
+    s = line.split()[0]
+    k = int(line.split()[1])
+    for p in sorted(list(permutations(s, k))):
+        print(''.join(p))
